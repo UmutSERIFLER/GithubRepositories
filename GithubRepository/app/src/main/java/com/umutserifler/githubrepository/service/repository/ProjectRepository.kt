@@ -13,6 +13,7 @@ const val HTTPS_API_GITHUB_URL = "https://api.github.com/"
  */
 class ProjectRepository {
 
+    //https://medium.com/swlh/kotlin-basics-of-companion-objects-a8422c96779b
     companion object Factory {
         val instance: ProjectRepository
             @Synchronized get() {
@@ -27,6 +28,12 @@ class ProjectRepository {
 
     private val githubService: GithubService = retrofit.create(GithubService::class.java)
 
+    /*
+    * Suspending functions are at the center of everything coroutines.
+    * A suspending function is simply a function that can be paused and resumed at a later time.
+    * They can execute a long running operation and wait for it to complete without blocking.
+    * https://stackoverflow.com/a/52925057
+    * */
     suspend fun getProjectList(userId: String): Response<List<Project>> =
         githubService.getProjectList(userId)
 
